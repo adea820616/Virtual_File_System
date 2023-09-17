@@ -6,3 +6,11 @@ def check_format(name):
         return False
     else:
         return True
+    
+
+def check_format_pack(format_list):
+    for name in format_list:
+        name_flag = check_format(name)
+        if not name_flag:
+            return False
+    return True

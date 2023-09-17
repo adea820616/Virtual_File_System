@@ -1,4 +1,5 @@
 import argparse
+from utils import check_format_pack
 
 
 def main():
@@ -8,6 +9,9 @@ def main():
     parser.add_argument("description", type=str, nargs="?", default='helloworld', help="Description for the folder (optional)")
 
     args = parser.parse_args()
+
+    # check the format of username & foldername
+    name_is_ok = check_format_pack([args.username, args.foldername])
 
 
 if __name__ == "__main__":
