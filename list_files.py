@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 from utils import check_format_pack
+from user_utils import UserManagement
 
 
 def main():
@@ -24,6 +25,12 @@ def main():
     name_is_ok = check_format_pack([args.username, args.foldername])
     username = args.username.lower()
     foldername = args.foldername.lower()
+
+    # if the format of username & foldername correct -> check the username and the foldername exists or not
+    if name_is_ok:
+        # check if the user exists or not
+        vfs_user = UserManagement()
+        user_existence_flag = vfs_user.check_exists(username, False) # not for registration, give False
 
 
 if __name__ == "__main__":
