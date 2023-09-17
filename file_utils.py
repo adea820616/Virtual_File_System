@@ -1,5 +1,6 @@
 import os
 import sys
+from datetime import datetime
 
 
 class FileManagement:
@@ -31,3 +32,13 @@ class FileManagement:
         else:
             print(f"The '{filename}' has not existed.")
             return False
+        
+    
+    # create a file
+    def create_file(self, filename, description):
+        self.created_file.add(filename)
+        with open(self.file_path, "w") as file:
+            file.write(str(datetime.today()) + "\n")
+            file.write(description + "\n")
+        show_filename = filename.split('.txt')[0]
+        print(f"Create '{show_filename}' successfully.", file=sys.stdout)
