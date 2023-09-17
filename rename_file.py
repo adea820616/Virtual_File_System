@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 from utils import check_format_pack
+from user_utils import UserManagement
 
 
 def main():
@@ -17,6 +18,11 @@ def main():
     foldername = args.foldername.lower()
     filename = args.filename.lower() + '.txt'
     new_filename = args.new_file_name.lower() + '.txt'
+
+    # if the format of username & foldername & filename correct -> check the username, foldername, filename exists or not
+    if name_is_ok:
+        vfs_user = UserManagement()
+        user_existence_flag = vfs_user.check_exists(username, False) # check user exists
 
 
 if __name__ == "__main__":
