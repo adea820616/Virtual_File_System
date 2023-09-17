@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+from utils import check_format_pack
 
 
 def main():
@@ -18,6 +19,9 @@ def main():
         sort_by = 'name'
     else:
         sort_by = 'time'
+
+    # check username & foldername format
+    name_is_ok = check_format_pack([args.username, args.foldername])
 
 
 if __name__ == "__main__":
