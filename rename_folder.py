@@ -11,8 +11,8 @@ def main():
 
     args = parser.parse_args()
 
-    # check the format of username & foldername
-    name_is_ok = check_format_pack([args.username, args.foldername])
+    # check the format of username & foldername & new_foldername
+    name_is_ok = check_format_pack([args.username, args.foldername, args.new_folder_name])
 
 
 if __name__ == "__main__":
