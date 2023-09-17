@@ -32,6 +32,7 @@ def main():
 
         vfs_file = FileManagement(username, foldername)
         file_existence_flag = vfs_file.check_exists(filename, False) # not for creating, give False
+        new_filename_existence_flag = vfs_file.check_exists(new_filename, True) # check new file does not exist -> to rename
 
 
 if __name__ == "__main__":
