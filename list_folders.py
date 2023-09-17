@@ -20,6 +20,7 @@ def main():
 
     # check the format of username
     name_is_ok = check_format(args.username)
+    username = args.username.lower()
 
 
 if __name__ == "__main__":
