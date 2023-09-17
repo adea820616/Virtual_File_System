@@ -1,5 +1,6 @@
 import os
 import sys
+from datetime import datetime
 
 
 class FolderManagement:
@@ -9,6 +10,7 @@ class FolderManagement:
         users_path = os.path.join(os.getcwd(), 'users')
         self.created_folder_path = os.path.join(users_path, username)
         self.load_created_folders()
+        self.description_filename = 'description.txt'
 
 
     def check_created_folder_path(self):
@@ -41,4 +43,11 @@ class FolderManagement:
         self.created_folder.add(foldername)
         os.mkdir(self.folder_path)
         print(f"Create '{foldername}' successfully.", file=sys.stdout)
+
+
+    def create_description(self, description):
+        self.description_path = os.path.join(self.folder_path, self.description_filename)
+        with open(self.description_path, "w") as file:
+            file.write(str(datetime.today()) + "\n")
+            file.write(description + "\n")
     

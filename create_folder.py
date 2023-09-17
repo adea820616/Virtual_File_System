@@ -31,6 +31,7 @@ def main():
         if user_existence_flag and not folder_existence_flag:
             vfs_folder.folder_path = os.path.join(vfs_folder.created_folder_path, foldername)
             vfs_folder.create_folder(foldername)
+            vfs_folder.create_description(args.description)
 
 
 if __name__ == "__main__":
