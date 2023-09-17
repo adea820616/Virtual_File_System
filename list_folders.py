@@ -2,6 +2,7 @@
 import argparse
 from utils import check_format
 from user_utils import UserManagement
+from folder_utils import FolderManagement
 
 
 def main():
@@ -28,6 +29,10 @@ def main():
         # check if the user exists or not
         vfs_user = UserManagement()
         user_existence_flag = vfs_user.check_exists(username, False) # not for registration, give False
+
+        if user_existence_flag:
+            vfs_folder = FolderManagement(username)
+            folder_empty_flag = vfs_folder.check_folder_empty()
 
 
 if __name__ == "__main__":

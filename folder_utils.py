@@ -73,3 +73,12 @@ class FolderManagement:
         dst = os.path.join(self.created_folder_path, new_foldername)
         os.rename(src, dst)
         print(f"Rename '{foldername}' to '{new_foldername}' successfully.", file=sys.stdout)
+
+    
+    # list folders
+    def check_folder_empty(self):
+        self.files_list = glob(os.path.join(self.created_folder_path, '*'))
+        if len(self.files_list) > 0:
+            return False
+        else:
+            return True
