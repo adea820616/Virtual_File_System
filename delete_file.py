@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import argparse
 from utils import check_format_pack
 from user_utils import UserManagement
@@ -33,6 +34,9 @@ def main():
         vfs_file = FileManagement(username, foldername)
         file_existence_flag = vfs_file.check_exists(filename, False) # not for creating, give False
 
+        if user_existence_flag and folder_existence_flag and file_existence_flag: # user exists, folder exists, file exists
+            vfs_file.file_path = os.path.join(vfs_file.created_file_path, filename)
+            vfs_file.delete_file(filename)
 
 if __name__ == "__main__":
     main()

@@ -5,6 +5,7 @@ from datetime import datetime
 
 class FileManagement:
     def __init__(self, username, foldername):
+        self.file_path = ''
         self.created_file = set()
         users_path = os.path.join(os.getcwd(), 'users')
         folder_path = os.path.join(users_path, username)
@@ -42,3 +43,10 @@ class FileManagement:
             file.write(description + "\n")
         show_filename = filename.split('.txt')[0]
         print(f"Create '{show_filename}' successfully.", file=sys.stdout)
+
+
+    # delete a file
+    def delete_file(self, filename):
+        os.remove(self.file_path)
+        show_filename = filename.split('.txt')[0]
+        print(f"Delete '{show_filename}' successfully.", file=sys.stdout)
