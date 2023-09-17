@@ -13,6 +13,9 @@ def main():
 
     # check the format of username & foldername & new_foldername
     name_is_ok = check_format_pack([args.username, args.foldername, args.new_folder_name])
+    username = args.username.lower()
+    foldername = args.foldername.lower()
+    new_foldername = args.new_folder_name.lower()
 
 
 if __name__ == "__main__":
