@@ -28,6 +28,7 @@ def main():
         # check if the folder exists or not
         vfs_folder = FolderManagement(username)
         folder_existence_flag = vfs_folder.check_exists(foldername, False) # not for creating a folder, give False
+        # the new folder name must not exist
         new_folder_existence_flag = vfs_folder.check_exists(new_foldername, True)
 
 
