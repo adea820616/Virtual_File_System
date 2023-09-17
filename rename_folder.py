@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+from utils import check_format_pack
 
 
 def main():
@@ -9,6 +10,9 @@ def main():
     parser.add_argument("new_folder_name", type=str, help="New name of the folder")
 
     args = parser.parse_args()
+
+    # check the format of username & foldername
+    name_is_ok = check_format_pack([args.username, args.foldername])
 
 
 if __name__ == "__main__":
