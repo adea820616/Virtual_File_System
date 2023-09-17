@@ -6,6 +6,7 @@ from datetime import datetime
 
 class FolderManagement:
     def __init__(self, username):
+        self.username = username
         self.folder_path = ''
         self.created_folder = set()
         users_path = os.path.join(os.getcwd(), 'users')
@@ -82,3 +83,58 @@ class FolderManagement:
             return False
         else:
             return True
+        
+
+    # Define a custom sorting key function
+    def sort_lines(self, line):
+        elements = line.split(',')
+
+        if self.sort_by == 'name':
+            return elements[0]
+        else:
+            return elements[2]
+
+
+    def sort_by_list_folders(self, lines):
+        sort_reverse = False if self.order == 'desc' else True
+        
+        lines = lines.strip().split('\n')
+        # Sort the lines based on the sort_name or sort_time in ascending or descending
+        sorted_lines = sorted(lines, key=self.sort_lines, reverse = sort_reverse)
+
+        # Join the sorted lines back into a string
+        sorted_data = '\n'.join(sorted_lines).replace(',', '')
+        return sorted_data
+
+
+    # get the foldername, description, created_time, username
+    def list_folder_str(self):
+        list_folder = ''
+        for file in self.files_list:
+            # foldername
+            file_path = str(file)
+            folder_name = file_path.split('/')[-1]
+            list_ = f'{folder_name}, '
+
+            # description & creaetd time
+            description_path = os.path.join(file_path, self.description_filename)
+            with open(description_path, 'r') as f:
+                content = f.read().splitlines()
+                created_time = content[0]
+                description = content[1]
+                list_ += f'{description}, '
+                list_ += f'{created_time}, '
+            # username
+            list_ += f'{self.username}'
+            list_folder += list_
+            list_folder += '\n'
+        return list_folder
+    
+
+    def list_folder(self, sort_by, order):
+        self.sort_by = sort_by
+        self.order = order
+        list_folder = self.list_folder_str()
+        list_folder = self.sort_by_list_folders(list_folder)
+        
+        print(f'{list_folder}')
