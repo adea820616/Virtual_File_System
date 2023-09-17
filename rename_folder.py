@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import argparse
 from utils import check_format_pack
 from user_utils import UserManagement
@@ -30,6 +31,10 @@ def main():
         folder_existence_flag = vfs_folder.check_exists(foldername, False) # not for creating a folder, give False
         # the new folder name must not exist
         new_folder_existence_flag = vfs_folder.check_exists(new_foldername, True)
+
+        if user_existence_flag and folder_existence_flag and not new_folder_existence_flag:
+            vfs_folder.folder_path = os.path.join(vfs_folder.created_folder_path, foldername)
+            vfs_folder.rename_folder(foldername, new_foldername)
 
 
 if __name__ == "__main__":

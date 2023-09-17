@@ -66,3 +66,10 @@ class FolderManagement:
         os.rmdir(self.folder_path)
         print(f"Delete '{foldername}' successfully.", file=sys.stdout)
     
+
+    # rename a folder
+    def rename_folder(self, foldername, new_foldername):
+        src = self.folder_path
+        dst = os.path.join(self.created_folder_path, new_foldername)
+        os.rename(src, dst)
+        print(f"Rename '{foldername}' to '{new_foldername}' successfully.", file=sys.stdout)
