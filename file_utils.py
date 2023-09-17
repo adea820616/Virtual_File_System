@@ -1,7 +1,8 @@
 import os
 import sys
+from glob import glob
 from datetime import datetime
-
+from folder_utils import FolderManagement
 
 class FileManagement:
     def __init__(self, username, foldername):
@@ -61,3 +62,14 @@ class FileManagement:
         show_new_filename = new_filename.split('.txt')[0]
         print(f"Rename '{show_filename}' to '{show_new_filename}' successfully.", file=sys.stdout)
     
+
+    # list files
+    def check_file_empty(self):
+        self.files_list = glob(os.path.join(self.created_file_path, '*'))
+        vfs_folder = FolderManagement(self.username)
+        d_filename = os.path.join(self.created_file_path, vfs_folder.description_filename)
+        self.files_list.remove(d_filename)
+        if len(self.files_list) > 0:
+            return False
+        else:
+            return True
