@@ -14,6 +14,9 @@ def main():
 
     # check the format of username & foldername & filename
     name_is_ok = check_format_pack([args.username, args.foldername, args.filename])
+    username = args.username.lower()
+    foldername = args.foldername.lower()
+    filename = args.filename.lower()
 
 
 if __name__ == "__main__":
