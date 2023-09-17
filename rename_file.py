@@ -9,6 +9,8 @@ def main():
     parser.add_argument("filename", type=str, help="Name of the file to rename")
     parser.add_argument("new_file_name", type=str, help="New name of the file")
 
+    args = parser.parse_args()
+
 
 if __name__ == "__main__":
     main()
