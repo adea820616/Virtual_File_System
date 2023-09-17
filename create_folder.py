@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import argparse
 from utils import check_format_pack
