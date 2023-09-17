@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import sys
 import argparse
 from utils import check_format_pack
 from user_utils import UserManagement
@@ -41,6 +42,11 @@ def main():
         if user_existence_flag and folder_existence_flag:
             vfs_file = FileManagement(username, foldername)
             file_empty_flag = vfs_file.check_file_empty()
+            
+            if not file_empty_flag:
+                vfs_file.list_file(sort_by, args.order)
+            else:
+                print(f"Warning: The files is empty!", file=sys.stdout)
 
 
 if __name__ == "__main__":

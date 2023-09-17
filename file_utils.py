@@ -6,6 +6,8 @@ from folder_utils import FolderManagement
 
 class FileManagement:
     def __init__(self, username, foldername):
+        self.username = username
+        self.foldername = foldername
         self.file_path = ''
         self.created_file = set()
         users_path = os.path.join(os.getcwd(), 'users')
@@ -73,3 +75,59 @@ class FileManagement:
             return False
         else:
             return True
+        
+
+    # Define a custom sorting key function
+    def sort_lines(self, line):
+        elements = line.split(',')
+
+        if self.sort_by == 'name':
+            return elements[0]
+        else:
+            return elements[2]
+
+
+    def sort_by_list_files(self, lines):
+        sort_reverse = False if self.order == 'desc' else True
+        
+        lines = lines.strip().split('\n')
+        # Sort the lines based on the sort_name or sort_time in ascending or descending
+        sorted_lines = sorted(lines, key=self.sort_lines, reverse = sort_reverse)
+
+        # Join the sorted lines back into a string
+        sorted_data = '\n'.join(sorted_lines).replace(',', '').replace('.txt', '')
+        return sorted_data
+
+
+    # get the filename, description, created_time, foldername, username
+    def list_file_str(self):
+        list_folder = ''
+        for file in self.files_list:
+            # filename
+            file_path = str(file)
+            folder_name = file_path.split('/')[-1]
+            list_ = f'{folder_name}, '
+
+            # description & creaetd time
+            with open(file_path, 'r') as f:
+                content = f.read().splitlines()
+                created_time = content[0]
+                description = content[1]
+                list_ += f'{description}, '
+                list_ += f'{created_time}, '
+            # foldername
+            list_ += f'{self.foldername}, '
+            # username
+            list_ += f'{self.username}'
+            list_folder += list_
+            list_folder += '\n'
+        return list_folder
+
+
+    def list_file(self, sort_by, order):
+        self.sort_by = sort_by
+        self.order = order
+        list_file = self.list_file_str()
+        list_file = self.sort_by_list_files(list_file)
+        
+        print(f'{list_file}', file=sys.stdout)
