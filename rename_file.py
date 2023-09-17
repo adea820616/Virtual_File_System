@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+from utils import check_format_pack
 
 
 def main():
@@ -10,6 +11,8 @@ def main():
     parser.add_argument("new_file_name", type=str, help="New name of the file")
 
     args = parser.parse_args()
+    # check username & foldername & filename format
+    name_is_ok = check_format_pack([args.username, args.foldername, args.filename, args.new_file_name])
 
 
 if __name__ == "__main__":
