@@ -1,5 +1,6 @@
 import os
 import sys
+from glob import glob
 from datetime import datetime
 
 
@@ -50,4 +51,18 @@ class FolderManagement:
         with open(self.description_path, "w") as file:
             file.write(str(datetime.today()) + "\n")
             file.write(description + "\n")
+
+
+    # delete a folder
+    def delete_files_byfolder(self):
+        files_list = glob(os.path.join(self.folder_path, '*'))
+        for file in files_list:
+            # the description.txt is also deleted
+            os.remove(file)
+
+
+    def delete_folder(self, foldername):
+        self.delete_files_byfolder()
+        os.rmdir(self.folder_path)
+        print(f"Delete '{foldername}' successfully.", file=sys.stdout)
     
