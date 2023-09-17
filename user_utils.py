@@ -28,3 +28,9 @@ class UserManagement:
         else:
             print(f"The '{username}' has not registered.")
             return False
+        
+
+    def register_user(self, username):
+        self.registered_users.add(username)
+        os.mkdir(os.path.join(self.registered_users_path, username))
+        print(f"Add '{username}' successfully.", file=sys.stdout)

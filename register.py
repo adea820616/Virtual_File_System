@@ -17,6 +17,10 @@ def main():
     vfs_user = UserManagement()
     user_exists_flag = vfs_user.check_exists(username, True)
 
+    # if the format of username corrects and the username exists -> register it.
+    if username_flag and not user_exists_flag:
+        vfs_user.register_user(username)
+
 
 if __name__ == "__main__":
     main()
