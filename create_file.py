@@ -31,6 +31,7 @@ def main():
         vfs_folder = FolderManagement(username)
         folder_existence_flag = vfs_folder.check_exists(foldername, False) # not for creating, give False
 
+        # check if the file exists or not
         vfs_file = FileManagement(username, foldername)
         file_existence_flag = vfs_file.check_exists(filename, True) # check file not exists -> to create the file
 
