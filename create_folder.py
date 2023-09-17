@@ -19,6 +19,7 @@ def main():
 
     # if the format of username & foldername correct -> check the username and the foldername exists or not
     if name_is_ok:
+        # check if the user exists or not
         vfs_user = UserManagement()
         user_existence_flag = vfs_user.check_exists(username, False) # not for registration, give False
 
