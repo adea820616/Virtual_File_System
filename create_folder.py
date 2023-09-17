@@ -1,3 +1,4 @@
+import os
 import argparse
 from utils import check_format_pack
 from user_utils import UserManagement
@@ -26,6 +27,10 @@ def main():
         # check if the folder exists or not
         vfs_folder = FolderManagement(username)
         folder_existence_flag = vfs_folder.check_exists(foldername, True)
+
+        if user_existence_flag and not folder_existence_flag:
+            vfs_folder.folder_path = os.path.join(vfs_folder.created_folder_path, foldername)
+            vfs_folder.create_folder(foldername)
 
 
 if __name__ == "__main__":
