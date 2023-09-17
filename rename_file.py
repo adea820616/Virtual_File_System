@@ -13,6 +13,10 @@ def main():
     args = parser.parse_args()
     # check username & foldername & filename format
     name_is_ok = check_format_pack([args.username, args.foldername, args.filename, args.new_file_name])
+    username = args.username.lower()
+    foldername = args.foldername.lower()
+    filename = args.filename.lower() + '.txt'
+    new_filename = args.new_file_name.lower() + '.txt'
 
 
 if __name__ == "__main__":
