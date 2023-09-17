@@ -50,3 +50,14 @@ class FileManagement:
         os.remove(self.file_path)
         show_filename = filename.split('.txt')[0]
         print(f"Delete '{show_filename}' successfully.", file=sys.stdout)
+
+    
+    # rename a file
+    def rename_file(self, filename, new_filename):
+        src = self.file_path
+        dst = os.path.join(self.created_file_path, new_filename)
+        os.rename(src, dst)
+        show_filename = filename.split('.txt')[0]
+        show_new_filename = new_filename.split('.txt')[0]
+        print(f"Rename '{show_filename}' to '{show_new_filename}' successfully.", file=sys.stdout)
+    

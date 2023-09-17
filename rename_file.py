@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import argparse
 from utils import check_format_pack
 from user_utils import UserManagement
@@ -34,6 +35,9 @@ def main():
         file_existence_flag = vfs_file.check_exists(filename, False) # not for creating, give False
         new_filename_existence_flag = vfs_file.check_exists(new_filename, True) # check new file does not exist -> to rename
 
+        if user_existence_flag and folder_existence_flag and file_existence_flag and not new_filename_existence_flag:
+            vfs_file.file_path = os.path.join(vfs_file.created_file_path, filename)
+            vfs_file.rename_file(filename, new_filename)
 
 if __name__ == "__main__":
     main()
