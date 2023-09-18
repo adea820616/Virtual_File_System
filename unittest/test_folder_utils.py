@@ -22,10 +22,12 @@ class TestFolderManagement(unittest.TestCase):
     """
 
     def setUp(self):
+        "initializes a FolderManagement instance for each test case."
         self.username = 'test_user'
         self.folder_manager = FolderManagement(self.username)
 
     def test_create_folder(self):
+        "Test the create_folder method."
         foldername = 'test_create_folder'
         self.folder_manager.folder_path = os.path.join('./users/test_user', foldername)
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
@@ -34,6 +36,7 @@ class TestFolderManagement(unittest.TestCase):
             self.assertIn(f"Create '{foldername}' successfully.", output)
 
     def test_delete_folder(self):
+        "Test the delete_folder method."
         foldername = 'test_delete_folder'
         self.folder_manager.folder_path = os.path.join('./users/test_user', foldername)
         # Create the folder first
@@ -44,6 +47,7 @@ class TestFolderManagement(unittest.TestCase):
             self.assertIn(f"Delete '{foldername}' successfully.", output)
 
     def test_rename_folder(self):
+        "Test the rename_folder method."
         foldername = 'test_rename_folder'
         new_foldername = 'renamed_folder'
         self.folder_manager.folder_path = os.path.join('./users/test_user', foldername)
@@ -55,6 +59,7 @@ class TestFolderManagement(unittest.TestCase):
             self.assertIn(f"Rename '{foldername}' to '{new_foldername}' successfully.", output)
 
     def test_list_folder(self):
+        "Test the list_folder method."
         from glob import glob
         username = 'test_list_folder'
         self.folder_manager = FolderManagement(username)
