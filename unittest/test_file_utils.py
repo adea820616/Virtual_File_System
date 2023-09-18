@@ -47,6 +47,19 @@ class TestFileManagement(unittest.TestCase):
             output = mock_stdout.getvalue().strip()
             self.assertIn("Rename 'test_file' to 'renamed_file' successfully.", output)
 
+    def test_list_folder(self):
+        from glob import glob
+        username = 'test_list_folder'
+        foldername = 'folder1'
+        self.file_manager = FileManagement(username, foldername)
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            self.file_manager.files_list = glob(os.path.join(self.file_manager.created_file_path, '*'))
+            self.file_manager.list_file(sort_by='name', order='asc')
+            output = mock_stdout.getvalue().strip()
+            print('output:', output)
+            self.assertIn("test_file1 Test_description. 2023-09-18 16:05:52.196494 folder1 test_list_folder", output)
+            self.assertIn("test_file2 Test_description. 2023-09-18 16:06:15.236384 folder1 test_list_folder", output)
+
 
 if __name__ == '__main__':
     unittest.main()
