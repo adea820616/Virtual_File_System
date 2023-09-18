@@ -4,6 +4,20 @@ from utils import check_format
 from user_utils import UserManagement
 
 def main():
+    """
+    Main function to register a user in the Virtual File System.
+    It takes a username as input and registers it if it meets the required format
+    and does not already exist.
+
+    Usage:
+        python register_user.py <username>
+
+    Args:
+        username (str): The username to register.
+
+    Returns:
+        None
+    """
     parser = argparse.ArgumentParser(description="Virtual File System - Register")
     parser.add_argument("username", type=str, help="register a user")
 
