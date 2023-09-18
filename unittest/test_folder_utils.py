@@ -21,14 +21,11 @@ class TestFolderManagement(unittest.TestCase):
         python test_folder_utils.py
     """
 
-    def setUp(self):
-        "initializes a FolderManagement instance for each test case."
-        self.username = 'test_user'
-        self.folder_manager = FolderManagement(self.username)
-
     def test_create_folder(self):
         "Test the create_folder method."
         foldername = 'test_create_folder'
+        self.username = 'test_user'
+        self.folder_manager = FolderManagement(self.username)
         self.folder_manager.folder_path = os.path.join('./users/test_user', foldername)
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.folder_manager.create_folder(foldername)
@@ -38,6 +35,8 @@ class TestFolderManagement(unittest.TestCase):
     def test_delete_folder(self):
         "Test the delete_folder method."
         foldername = 'test_delete_folder'
+        self.username = 'test_user'
+        self.folder_manager = FolderManagement(self.username)
         self.folder_manager.folder_path = os.path.join('./users/test_user', foldername)
         # Create the folder first
         self.folder_manager.create_folder(foldername)
@@ -50,6 +49,8 @@ class TestFolderManagement(unittest.TestCase):
         "Test the rename_folder method."
         foldername = 'test_rename_folder'
         new_foldername = 'renamed_folder'
+        self.username = 'test_user'
+        self.folder_manager = FolderManagement(self.username)
         self.folder_manager.folder_path = os.path.join('./users/test_user', foldername)
         # Create the folder first
         self.folder_manager.create_folder(foldername)
