@@ -8,14 +8,12 @@ from file_utils import FileManagement
 
 class TestFileManagement(unittest.TestCase):
 
-    def init_class(self):
-        self.username = 'test_user'
-        self.foldername = 'test_folder'
-        self.file_manager = FileManagement(self.username, self.foldername)
-
     def test_create_file(self):
+        username = 'test_user'
+        foldername = 'test_folder'
         filename = 'test_file.txt'
         description = 'Test_description.'
+        self.file_manager = FileManagement(username, foldername)
         self.file_manager.file_path = os.path.join(self.file_manager.created_file_path, filename)
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.file_manager.create_file(filename, description)
@@ -23,7 +21,10 @@ class TestFileManagement(unittest.TestCase):
             self.assertIn("Create 'test_file' successfully.", output)
 
     def test_delete_file(self):
+        username = 'test_user'
+        foldername = 'test_folder'
         filename = 'test_file.txt'
+        self.file_manager = FileManagement(username, foldername)
         # Create the file first
         self.file_manager.file_path = os.path.join(self.file_manager.created_file_path, filename)
         self.file_manager.create_file(filename, 'Test file to delete.')
@@ -33,8 +34,11 @@ class TestFileManagement(unittest.TestCase):
             self.assertIn("Delete 'test_file' successfully.", output)
 
     def test_rename_file(self):
+        username = 'test_user'
+        foldername = 'test_folder'
         filename = 'test_file.txt'
         new_filename = 'renamed_file.txt'
+        self.file_manager = FileManagement(username, foldername)
         self.file_manager.file_path = os.path.join(self.file_manager.created_file_path, filename)
         # Create the file first
         self.file_manager.create_file(filename, 'Test file to rename.')
