@@ -31,3 +31,6 @@ class TestUserManagement(unittest.TestCase):
             self.vfs_user.register_user('new_user')
             output = mock_stdout.getvalue().strip()
             self.assertIn(output, "Add 'new_user' successfully.")
+
+if __name__ == '__main__':
+    unittest.main()
