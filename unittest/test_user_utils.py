@@ -4,7 +4,19 @@ from io import StringIO
 from unittest.mock import patch
 
 class TestUserManagement(unittest.TestCase):
+    """
+    Unit tests for UserManagement class.
+    This test suite covers the following methods of the UserManagement class:
+        - check_user_exists
+        - check_user_does_not_exist
+        - register_user
 
+    Attributes:
+        vfs_user (UserManagement): An instance of the UserManagement class for testing purposes.
+
+    Usage:
+        python test_user_utils.py
+    """
     def init_class(self):
         "initializes a UserManagement instance for each test case."
         self.vfs_user = UserManagement()
