@@ -24,3 +24,10 @@ class TestUserManagement(unittest.TestCase):
             output = mock_stderr.getvalue().strip()
             self.assertFalse(result)
             self.assertIn(output, "The 'nonexistent_user' has not registered.")
+
+    def test_register_user_success(self):
+        "Test the register_user method for successful registration."
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            self.vfs_user.register_user('new_user')
+            output = mock_stdout.getvalue().strip()
+            self.assertIn(output, "Add 'new_user' successfully.")
