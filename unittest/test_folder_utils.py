@@ -4,9 +4,22 @@ from io import StringIO
 import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from folder_utils import FolderManagement  # Replace 'folder_utils' with your actual module name
+from folder_utils import FolderManagement
 
 class TestFolderManagement(unittest.TestCase):
+    """
+    Unit tests for FolderManagement class.
+    This test suite covers the following methods of the FolderManagement class:
+        - create_folder
+        - delete_folder
+        - rename_folder
+        - list_folder
+    Attributes:
+        username (str): The username for testing purposes.
+        folder_manager (FolderManagement): An instance of the FolderManagement class for testing purposes.
+    Usage:
+        python test_folder_utils.py
+    """
 
     def setUp(self):
         self.username = 'test_user'
